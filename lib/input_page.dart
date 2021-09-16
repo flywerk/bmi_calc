@@ -19,7 +19,9 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
-  int height = 100;
+  int height = 175;
+  int weight = 75;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('HEIGHT', style: TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98),)),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   Row (
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -90,10 +92,66 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(child: ReusableCard(
               colour: activeCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("WEIGHT", style: cLabelTextStyle,),
+                    SizedBox(height: 4),
+                    Text(weight.toString(), style: cNumberTextStyle,),
+                    SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RoundButtonIcon(
+                          icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                            setState(() {
+                              weight++;
+                            });
+                        }),
+                        SizedBox(width: 10,),
+                        RoundButtonIcon(icon: FontAwesomeIcons.minus,
+                        onPressed: () {
+                          setState(() {
+                            weight--;
+                          });
+                        },),
+                      ],
+                    ),
+                  ],
+                ),
               ),),
               Expanded(child: ReusableCard(
-              colour: activeCardColor,
-    ),),],
+                colour: activeCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("AGE", style: cLabelTextStyle,),
+                    SizedBox(height: 4),
+                    Text(age.toString(), style: cNumberTextStyle,),
+                    SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RoundButtonIcon(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                            setState(() {
+                            age++;
+                          });
+                        }),
+                        SizedBox(width: 10),
+                        RoundButtonIcon(icon: FontAwesomeIcons.minus,
+                          onPressed: () {
+                            setState(() {
+                              age--;
+                            });
+                          },),
+                      ],
+                    ),
+                  ],
+                ),
+              ),),],
             ),
           ),
           Container(
@@ -109,6 +167,27 @@ class _InputPageState extends State<InputPage> {
 }
 
 
+class RoundButtonIcon extends StatelessWidget {
+
+  RoundButtonIcon({@required this.icon, @required this.onPressed});
+  final IconData icon;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: onPressed,
+      elevation: 7.0,
+      constraints: BoxConstraints.tightFor(
+        width: 48.0,
+        height: 48.0,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      fillColor: Color(0xFF4C4F5E),
+    );
+  }
+}
 
 
 
