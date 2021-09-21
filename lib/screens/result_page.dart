@@ -7,7 +7,12 @@ import '../components/bottom_button.dart';
 
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key key}) : super(key: key);
+
+  const ResultPage({@required this.interpretation, @required this.bmiResult, @required this.resultText});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +37,9 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Normal", style: cResultTextStyle,),
-                  Text("20.4", style: cBMITextStyle,),
-                  Text("you should eat more", style: cBodyTextStyle, textAlign: TextAlign.center,),
+                  Text(resultText.toUpperCase(), style: cResultTextStyle,),
+                  Text(bmiResult, style: cBMITextStyle,),
+                  Text(interpretation, style: cBodyTextStyle, textAlign: TextAlign.center,),
                 ],
               ),
             ),
